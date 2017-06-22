@@ -7,7 +7,7 @@ namespace Template
     class Sprite
     {
         Texture2D tex;
-        Vector2 pos;
+        public Vector2 pos;
 
         public Sprite(Texture2D a_tex, Vector2 a_pos)
         {

@@ -8,8 +8,7 @@ namespace Template
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Vector2 pos;
-        Texture2D tex;
+        Sprite ship;
         
         public Game1()
         {
@@ -22,12 +21,11 @@ namespace Template
         }
         protected override void Initialize()
         {
-            pos = new Vector2(300, 300);
+            ship = new Sprite(Content.Load<Texture2D>("ship"), new Vector2(300, 300));
             base.Initialize();
         }
         protected override void LoadContent()
         {
-            tex = Content.Load<Texture2D>("ship");
             spriteBatch = new SpriteBatch(GraphicsDevice);
         }
         protected override void UnloadContent()
@@ -40,16 +38,16 @@ namespace Template
                 Exit();
             base.Update(gameTime);
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Down)) { pos.Y += 3; }
-            if (Keyboard.GetState().IsKeyDown(Keys.Up)) { pos.Y -= 3; }
-            if (Keyboard.GetState().IsKeyDown(Keys.Left)) { pos.X -= 3; }
-            if (Keyboard.GetState().IsKeyDown(Keys.Right)) { pos.X += 3; }
+            if (Keyboard.GetState().IsKeyDown(Keys.Down)) { ship.pos.Y += 3; }
+            if (Keyboard.GetState().IsKeyDown(Keys.Up)) { ship.pos.Y -= 3; }
+            if (Keyboard.GetState().IsKeyDown(Keys.Left)) { ship.pos.X -= 3; }
+            if (Keyboard.GetState().IsKeyDown(Keys.Right)) { ship.pos.X += 3; }
         }
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
-            spriteBatch.Draw(tex, pos, null);
+            ship.Draw(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);
