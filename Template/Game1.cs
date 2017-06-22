@@ -38,10 +38,12 @@ namespace Template
                 Exit();
             base.Update(gameTime);
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Down)) { ship.pos.Y += 3; }
-            if (Keyboard.GetState().IsKeyDown(Keys.Up)) { ship.pos.Y -= 3; }
-            if (Keyboard.GetState().IsKeyDown(Keys.Left)) { ship.pos.X -= 3; }
-            if (Keyboard.GetState().IsKeyDown(Keys.Right)) { ship.pos.X += 3; }
+            Vector2 mov = Vector2.Zero;
+            if (Keyboard.GetState().IsKeyDown(Keys.Down)) { mov.Y += 3; }
+            if (Keyboard.GetState().IsKeyDown(Keys.Up)) { mov.Y -= 3; }
+            if (Keyboard.GetState().IsKeyDown(Keys.Left)) { mov.X -= 3; }
+            if (Keyboard.GetState().IsKeyDown(Keys.Right)) { mov.X += 3; }
+            ship.Move(mov);
         }
         protected override void Draw(GameTime gameTime)
         {
