@@ -9,21 +9,13 @@ namespace Template
 {
     class Server
     {
-        Socket socket = null;
+        Socket _socket = null;
 
         public Server(String host)
         {
-            socket = IO.Socket(host);
+            _socket = IO.Socket(host);
         }
 
-        public void setSocket(Socket socket)
-        {
-            this.socket = socket;
-        }
-
-        public Socket getSocket()
-        {
-            return socket;
-        }
+        public Socket Socket { get; set; }
     }
 }
