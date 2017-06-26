@@ -44,6 +44,32 @@ namespace Template
         }
         void HandleWebConnections()
         {
+            NetIncomingMessage message;
+            while ((message = peer.ReadMessage()) != null)
+            {
+                switch (message.MessageType)
+                {
+                    case NetIncomingMessageType.Data:
+                        string data = message.ReadString();
+                        break;
+
+                    case NetIncomingMessageType.StatusChanged:
+                        switch (message.SenderConnection.Status)
+                        {
+
+                        }
+                        break;
+
+                    case NetIncomingMessageType.DebugMessage:
+                        Console.WriteLine(message.ReadString());
+                        break;
+
+                    default:
+                        Console.WriteLine("unhandled message with type: "
+                            + message.MessageType);
+                        break;
+                }
+            }
         }
         void UpdateWebConnections()
         {
